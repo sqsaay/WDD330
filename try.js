@@ -12,10 +12,9 @@ startButton.addEventListener("click", () => {
   timeLeft = 10;
   countdownDisplay.textContent = timeLeft;
 
-
-
   intervalId = setInterval(() => {
-    if (!isPaused) {   // Only tick if not paused
+    if (!isPaused) {
+      // Only tick if not paused
       timeLeft--;
       countdownDisplay.textContent = timeLeft;
 
@@ -30,10 +29,9 @@ startButton.addEventListener("click", () => {
 pauseButton.addEventListener("click", () => {
   if (!isPaused) {
     isPaused = true;
-    pauseButton.textContent = "Resume";  // Change button label
+    pauseButton.textContent = "Resume"; // Change button label
   } else {
     isPaused = false;
-    pauseButton.textContent = "Pause";   // Change back
+    pauseButton.textContent = "Pause"; // Change back
   }
 });
-
