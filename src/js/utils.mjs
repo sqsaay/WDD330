@@ -30,3 +30,22 @@ export function getParam(){
   return product;
 }
 
+//render a list of products to the page
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  // Clear out the element if requested
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  // Transform each product into HTML using the provided template function
+  const htmlStrings = list.map(templateFn);
+
+  // Insert the combined HTML into the parent element
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
