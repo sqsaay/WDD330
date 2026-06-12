@@ -16,11 +16,28 @@ export default class ProductDetails {
             .addEventListener("click", this.addProductToCart.bind(this));
     }
 
-    addProductToCart(product) {
-        const cartItems = getLocalStorage("so-cart") || []; // get cart array of items from local storage if null set to empty array
-        cartItems.push(this.product);
+    addProductToCart() {
+        const cartItems = getLocalStorage("so-cart") || [];
+
+        // Check if product already exists in cart
+        const existingIndex = cartItems.findIndex(
+            (item) => item.Id === this.product.Id
+        );
+
+        if (existingIndex > -1) {
+            // If found, increase quantity
+            cartItems[existingIndex].quantity =
+                (cartItems[existingIndex].quantity || 1) + 1;
+        } else {
+            // If not found, add new product with quantity = 1
+            this.product.quantity = 1;
+            cartItems.push(this.product);
+        }
+
         setLocalStorage("so-cart", cartItems);
+        alert(`${this.product.Name} has been added to your cart!`);
     }
+
 
     renderProductDetails() {
         const detailsElement = document.getElementById("productDetails");
